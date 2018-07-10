@@ -98,10 +98,11 @@ classifier.fit(X_train,y_train)
 
 y_pred = classifier.predict(X_test)
 
-#result error 21.6%
+#result error 17.7%
 from sklearn.metrics import confusion_matrix
 cm_KNN=confusion_matrix(y_test,y_pred)
 
+error_KNN=(cm_KNN[1,0]+cm_KNN[0,1])/sum(map(sum,cm_KNN))
 #naive bayes
 from sklearn.naive_bayes import GaussianNB, 
 classifier = GaussianNB()
@@ -115,22 +116,23 @@ from sklearn.tree import DecisionTreeClassifier
 classifier = DecisionTreeClassifier(criterion = 'entropy',random_state=0)
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
-#21.8% error
+#14.8% error
 cm_TREE=confusion_matrix(y_test,y_pred)
-
+error_TREE=(cm_TREE[1,0]+cm_TREE[0,1])/sum(map(sum,cm_TREE))
 #random forest
 
 from sklearn.ensemble import RandomForestClassifier
 classifier=RandomForestClassifier(n_estimators=10,criterion='gini',random_state=0)
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
-#17.3% error
+#14.8% error
 cm_forest=confusion_matrix(y_test,y_pred)
-
+error_forest=(cm_forest[1,0]+cm_forest[0,1])/sum(map(sum,cm_forest))
 #SVC
 from sklearn.svm import SVC
 classifier = SVC(kernel='rbf',random_state=0)
 classifier.fit(X_train,y_train)
 y_pred = classifier.predict(X_test)
-#17.9% error
+#14.8% error
 cm_SVC=confusion_matrix(y_test,y_pred)
+error_SVC=(cm_SVC[1,0]+cm_SVC[0,1])/sum(map(sum,cm_SVC))
